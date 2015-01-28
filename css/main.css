@@ -1,0 +1,61 @@
+div.spinner {
+  width: 25%;
+  margin: auto auto; }
+
+svg.spinner {
+  -webkit-animation: spin 3s infinite cubic-bezier(0.6, 0.3, 0.3, 0.6), fade 0.75s infinite alternate cubic-bezier(0.7, 0.2, 0.9, 0.9);
+          animation: spin 3s infinite cubic-bezier(0.6, 0.3, 0.3, 0.6), fade 0.75s infinite alternate cubic-bezier(0.7, 0.2, 0.9, 0.9); }
+  svg.spinner.offscreen {
+    -webkit-animation: none;
+            animation: none;
+    -webkit-transform: translateY(-500%);
+            transform: translateY(-500%);
+    transition: 2s -webkit-transform ease-in-out;
+    transition: 2s transform ease-in-out; }
+
+@-webkit-keyframes spin {
+
+  0% {
+    -webkit-transform: perspective(800px) rotate3d(0, 1, 0, 0deg);
+            transform: perspective(800px) rotate3d(0, 1, 0, 0deg); }
+
+  50% {
+    -webkit-transform: perspective(800px) rotate3d(0, 1, 0, 180deg);
+            transform: perspective(800px) rotate3d(0, 1, 0, 180deg); }
+
+  100% {
+    -webkit-transform: perspective(800px) rotate3d(0, 1, 0, 360deg);
+            transform: perspective(800px) rotate3d(0, 1, 0, 360deg); } }
+
+@keyframes spin {
+  0% {
+    -webkit-transform: perspective(800px) rotate3d(0, 1, 0, 0deg);
+            transform: perspective(800px) rotate3d(0, 1, 0, 0deg); }
+
+  50% {
+    -webkit-transform: perspective(800px) rotate3d(0, 1, 0, 180deg);
+            transform: perspective(800px) rotate3d(0, 1, 0, 180deg); }
+
+  100% {
+    -webkit-transform: perspective(800px) rotate3d(0, 1, 0, 360deg);
+            transform: perspective(800px) rotate3d(0, 1, 0, 360deg); } }
+
+@-webkit-keyframes fade {
+
+  0% {
+    fill: #000; }
+
+  100% {
+    fill: #EEE; } }
+
+@keyframes fade {
+  0% {
+    fill: #000; }
+
+  100% {
+    fill: #EEE; } }
+
+h2 {
+  font-family: 'Karnak Pro Bold';
+  font-size: 3em; }
+/*# sourceMappingURL=main.css.map */

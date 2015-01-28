@@ -1,0 +1,36 @@
+div.spinner {
+  width: 25%;
+  margin: auto auto;
+}
+
+svg.spinner {
+  animation : 
+    spin 3s infinite cubic-bezier(0.6, 0.3, 0.3, 0.6), 
+    fade .75s infinite alternate cubic-bezier(0.7, 0.2, 0.9, 0.9);
+  &.offscreen {
+    animation: none; 
+    transform :translateY(-500%);
+    transition: 2s transform ease-in-out;
+  }
+}
+
+@keyframes spin { 
+  0% {
+    transform: perspective(800px) rotate3d(0, 1, 0, 0deg);
+  }
+  50% {
+    transform: perspective(800px) rotate3d(0, 1, 0, 180deg);
+  }
+  100% {
+    transform: perspective(800px) rotate3d(0, 1, 0, 360deg);
+  }
+}
+
+@keyframes fade {
+  0% {
+    fill: #000;
+  }
+  100% {
+    fill: #EEE;
+  }
+} 
