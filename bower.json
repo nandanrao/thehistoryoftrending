@@ -14,14 +14,10 @@
     "tests"
   ],
   "dependencies": {
-    "backbone": "~1.1.2",
     "lodash": "~3.0.0",
-    "underscore": "~1.7.0",
-    "jquery": "~2.1.3",
     "squire": "~0.2.0",
     "requirejs-web-workers": "~1.0.1",
     "kefir": "~0.5.3",
-    "fetch": "~0.7.0",
     "es6-promise": "~2.0.1",
     "requirejs-react-jsx": "~0.12.0",
     "react": "~0.12.2",

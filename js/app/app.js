@@ -1,12 +1,11 @@
 require([
-		'backbone', 
 		'requirejs-web-workers!nyt/worker.js', 
 		'es6-promise', 
 		'kefir', 
 		'lodash',
 		'jsx!uiview',
 		'utils/bus'
-	], function(backbone, worker, promise, Kefir, _, UIView, bus){
+	], function(worker, promise, Kefir, _, UIView, bus){
 
 	var Promise = promise.Promise
 
