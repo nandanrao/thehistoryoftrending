@@ -6,7 +6,7 @@ define(['nyt/nyt.api', 'kefir', 'lodash', 'utils/bus'], function(nyt, Kefir, _, 
 
 	var allStories = function(keyword){
 		nyt.allStories(keyword).then(function(obj){
-			
+
 			var num = obj.response.meta.hits;
 			var promises = [];
 			callAllStories();
@@ -19,7 +19,7 @@ define(['nyt/nyt.api', 'kefir', 'lodash', 'utils/bus'], function(nyt, Kefir, _, 
 						stream.emit(obj.response.docs)	
 					}
 				}));
-				if (i > num || i > 200){
+				if (i > num || i > 1000){
 					beginningOfTheEnd()
 					return 
 				}
@@ -60,23 +60,18 @@ define(['nyt/nyt.api', 'kefir', 'lodash', 'utils/bus'], function(nyt, Kefir, _, 
 								})
 								.value();
 		})
+		.flatten()
+		.scan(function(prev, next){
+			return prev.concat(next)
+		}, [])
+		.flatMapConcat(function(x) {
+		  return Kefir.later(250, x)
+		})
 		.onValue(function(obj){
-			console.log(obj)
-			// bus.trigger('toUI', obj)
+			bus.trigger('toUI', obj)
 		})
 		.onEnd(function(){
 			bus.trigger('toUI', 'allstories:end')
 		})
 	return allStories
 })
-
-// {
-// 	headline(headline.main):
-// 	abstract:
-// 	snippet:
-// 	pub_date:
-// 	news_desk:
-// 	byline (byline.original):
-// 	web_url:
-// 	_id:
-// }

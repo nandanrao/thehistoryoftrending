@@ -1,6 +1,6 @@
 div.spinner {
-  width: 25%;
-  margin: auto auto; }
+  width: 15%;
+  margin: 10em auto; }
 
 svg.spinner {
   -webkit-animation: spin 3s infinite cubic-bezier(0.6, 0.3, 0.3, 0.6), fade 0.75s infinite alternate cubic-bezier(0.7, 0.2, 0.9, 0.9);
@@ -55,7 +55,52 @@ svg.spinner {
   100% {
     fill: #EEE; } }
 
-h2 {
+.subjects-enter, .subjects-leave.subjects-leave-active, .articles-enter, ul.subjects li.hidden {
+  opacity: 0.3;
+  -webkit-filter: blur(4px);
+          filter: blur(4px); }
+
+.subjects-enter.subjects-enter-active, .subjects-leave, .articles-enter.articles-enter-active, ul.subjects li.visible {
+  opacity: 1;
+  -webkit-filter: none;
+          filter: none; }
+
+.subjects-enter {
+  opacity: 0.01; }
+
+.subjects-leave {
+  transition: opacity 0.7s ease-in-out, -webkit-filter 0.7s ease-in-out, opacity 0.7s ease-in-out, filter 0.7s ease-in-out;
+  transition: opacity 0.7s ease-in-out, filter 0.7s ease-in-out; }
+
+.subjects-leave.subjects-leave-active {
+  opacity: 0; }
+
+.articles-enter {
+  opacity: 0.01; }
+
+li {
+  list-style: none; }
+
+ul.subjects li {
+  cursor: pointer;
+  width: 100%;
+  text-align: center;
   font-family: 'Karnak Pro Bold';
-  font-size: 3em; }
+  font-size: 2.33em;
+  margin: inherit auto;
+  transition: opacity 0.2s ease-in-out, -webkit-filter 0.2s ease-in-out, opacity 0.2s ease-in-out, filter 0.2s ease-in-out;
+  transition: opacity 0.2s ease-in-out, filter 0.2s ease-in-out; }
+
+div#articles {
+  margin-top: 4em; }
+  div#articles li {
+    width: 70%;
+    margin: inherit auto;
+    transition: opacity 0.2s ease-in-out, -webkit-filter 0.2s ease-in-out, opacity 0.2s ease-in-out, filter 0.2s ease-in-out;
+    transition: opacity 0.2s ease-in-out, filter 0.2s ease-in-out; }
+    div#articles li h2 {
+      font-family: 'Cheltenham Bold';
+      font-size: 2.33em; }
+    div#articles li p {
+      font-family: 'Georgia'; }
 /*# sourceMappingURL=main.css.map */

@@ -1,6 +1,9 @@
 require.config({
 	baseUrl: 'js/app',
 	shim: {
+		'RainbowVis-JS': {
+	    exports: 'Rainbow'
+		},
 
 	},
 	paths: {
@@ -13,9 +16,19 @@ require.config({
 		'requirejs-web-workers': '../lib/bower_components/requirejs-web-workers/src/worker',
 		kefir: '../lib/bower_components/kefir/dist/kefir',
 		fetch: '../lib/bower_components/fetch/fetch',
-		'es6-promise': '../lib/bower_components/es6-promise/promise'
+		'es6-promise': '../lib/bower_components/es6-promise/promise',
+		react: '../lib/bower_components/react/react-with-addons',
+		JSXTransformer: '../lib/bower_components/react/JSXTransformer',
+		jsx: '../lib/bower_components/requirejs-react-jsx/jsx',
+		'requirejs-react-jsx': '../lib/bower_components/requirejs-react-jsx/jsx',
+		text: '../lib/bower_components/requirejs-text/text',
+		'RainbowVis-JS': '../lib/bower_components/RainbowVis-JS/rainbowvis',
+		'requirejs-text': '../lib/bower_components/requirejs-text/text'
 	},
 	packages: [
 
-	]
+	],
+	jsx: {
+		fileExtension: '.jsx'
+	}
 });

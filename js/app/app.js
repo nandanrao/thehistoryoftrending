@@ -3,8 +3,10 @@ require([
 		'requirejs-web-workers!nyt/worker.js', 
 		'es6-promise', 
 		'kefir', 
-		'lodash'
-	], function(backbone, worker, promise, Kefir, _){
+		'lodash',
+		'jsx!uiview',
+		'utils/bus'
+	], function(backbone, worker, promise, Kefir, _, UIView, bus){
 
 	var Promise = promise.Promise
 
@@ -13,64 +15,67 @@ require([
 		workerLoadedResolve = resolve;
 	})
 
-	worker.onmessage = function(e){
-		if (e.data === 'loaded') {
-			workerLoadedResolve()
-		}
-	}
-
-	window.allStories = function(keyword){
-		worker.postMessage('all:' + keyword)
-	}
+	worker.addEventListener('message', workerLoadedResolve)
 
 	workerLoaded.then(function(){ 
+		worker.removeEventListener('message', workerLoadedResolve)
+		worker.postMessage('mostPopular')
+		worker.addEventListener('message', receiveMostPopular)
 
-		var stream = Kefir.emitter()
 
-		// worker.postMessage('mostPopular')
-
-		worker.onmessage = function(e){
+		var mostPopularStream = Kefir.emitter();
+		function receiveMostPopular(e){
 			if (e.data === 'popular:end'){
-				stream.end()
+				mostPopularStream.end()
+				worker.removeEventListener('message', receiveMostPopular)
 			}
 			else {
-				stream.emit(e.data)
+				mostPopularStream.emit(e.data)
+			}
+		};
+
+		var prop = mostPopularStream.toProperty();
+		prop
+			.flatMapConcat(function(x) {
+			  return Kefir.later(8, x)
+			})
+			.onValue(function(val){
+				UIView.subjects(val, false)
+			})
+			.onEnd(function(obj){
+				prop.onValue(function(val){ 
+					UIView.subjects(val, true)
+				})
+			})
+	})
+
+	bus.on('selected', function(word){
+		getStories(word)
+	})
+
+	function getStories(subject){
+
+		worker.postMessage('allstories:' + subject)
+		worker.addEventListener('message', recieveArticles)
+
+		var allStoriesStream = Kefir.emitter();
+		function recieveArticles(e){
+			if (e.data === 'allstories:end'){
+				allStoriesStream.end()
+				worker.removeEventListener('message', recieveArticles)
+			}
+			else {
+				allStoriesStream.emit(e.data)
 			}
 		}
 
-		stream
-			.onEnd(function(){
-				console.log('stream end')
+		var prop = allStoriesStream
+		prop
+			.onValue(function(val){
+				UIView.articles(val)
 			})
-			.onValue(function(obj){
-				console.log(obj)
-				
-			})
+		
+	}
 
-		var totals = stream
-										.reduce(function(a,b){
-											return _.merge(a, b, function(a, b){
-												return a + b
-											})
-										})
-										.map(function(obj){
-											return _.chain(obj)
-																.pick(function(v, k){
-																	return v > 1
-																})
-																.map(function(v,k){
-																	return {
-																		word: k,
-																		count: v
-																	}
-																})
-																.sortBy(function(obj){
-																	return -obj.count
-																})
-																.value()
-										})
-										.onValue(function(obj){
-											console.log('reduced', obj)
-										})
-	})
+
 })

@@ -1,0 +1,14 @@
+{
+  "name": "RainbowVis-JS",
+  "homepage": "https://github.com/anomal/RainbowVis-JS",
+  "_release": "83d17dde94",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "83d17dde94ed99af307f99b5063cb92a04d246d2"
+  },
+  "_source": "https://github.com/anomal/RainbowVis-JS.git",
+  "_target": "*",
+  "_originalSource": "https://github.com/anomal/RainbowVis-JS.git",
+  "_direct": true
+}

@@ -2,7 +2,7 @@ define(['utils/bus', 'nyt/mostpopular', 'nyt/allstories'], function(bus, mostPop
 
   var endpoints = {
     mostPopular: mostPopular,
-    all: allStories
+    allstories: allStories
   };
 
   bus.on('fromUI', function(message){
