@@ -11,6 +11,7 @@ define(['react', 'lodash'], function(React, _){
 				<ul className="articles">
 				<ReactCSSTransitionGroup transitionName="articles">
 					{ _.map(articles, function(article, i) {
+						// console.log(article._id)
 	          return <Article
 	          				key={article._id}
 	          				headline={article.headline}

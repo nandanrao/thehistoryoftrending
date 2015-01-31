@@ -5,7 +5,7 @@ define(['react', 'lodash', 'RainbowVis-JS', 'utils/bus'], function(React, _, Rai
 	var rainbow = new Rainbow();  
 	rainbow.setSpectrum('#999999', '#FF0000'); 
 	// TODO: set rainbow dynamically (and abstract into its own module!)
-	rainbow.setNumberRange(0, 60);
+	rainbow.setNumberRange(0, 80);
 
 	var Subjects = React.createClass({
 		getInitialState: function(){
@@ -14,10 +14,10 @@ define(['react', 'lodash', 'RainbowVis-JS', 'utils/bus'], function(React, _, Rai
 			}
 		},
 		handleSelected: function(word, e){
-			bus.trigger('selected', word)
 			if (!this.props.loaded){
 				return
 			}
+			bus.trigger('selected', word)
 			this.setState({
 				selected: {
 					word: word,
@@ -28,9 +28,9 @@ define(['react', 'lodash', 'RainbowVis-JS', 'utils/bus'], function(React, _, Rai
 		},
 		// TODO: this gets called an excessive amount of times!
 		handleSubjectsUnmounting: function(e){
-			var newState = _.merge(this.state.selected,{position: 'absolute'})
+			var selectedWithPosition = _.merge(this.state.selected,{position: 'absolute'})
 			this.setState({
-				selected: newState
+				selected: selectedWithPosition
 			})
 		},
 		render: function(){
@@ -71,7 +71,7 @@ define(['react', 'lodash', 'RainbowVis-JS', 'utils/bus'], function(React, _, Rai
 				hidden: false,
 			}
 		},
-		componentWillReceiveProps: function(nextProps) {
+		componentWillUpdate: function(nextProps){
 			var self = this;
 			if (nextProps.selected) {
 				return
@@ -94,7 +94,7 @@ define(['react', 'lodash', 'RainbowVis-JS', 'utils/bus'], function(React, _, Rai
 			var self = this;
 			setTimeout(function(){
 				self.setState({ selected: true })
-			}, 500)
+			}, 200)
 		},
 		render: function(){
 			

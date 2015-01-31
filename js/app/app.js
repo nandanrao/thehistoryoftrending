@@ -9,6 +9,11 @@ require([
 
 	var Promise = promise.Promise
 
+	worker.onerror = function(err){
+		alert('oops, we had a problem, please reload the page and try again!')
+		throw new Error(err)
+	}
+
 	var workerLoaded, workerLoadedResolve;
 	workerLoaded = new Promise(function(resolve, reject){
 		workerLoadedResolve = resolve;
@@ -36,7 +41,7 @@ require([
 		var prop = mostPopularStream.toProperty();
 		prop
 			.flatMapConcat(function(x) {
-			  return Kefir.later(8, x)
+			  return Kefir.later(2, x)
 			})
 			.onValue(function(val){
 				UIView.subjects(val, false)

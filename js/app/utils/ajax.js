@@ -12,6 +12,10 @@ define(['es6-promise'], function(promise){
 			var req = new XMLHttpRequest()
 			req.onload = function(e){
 				var data = JSON.parse(e.target.response);
+				// hack because we still get 200 response if over limit!
+				if (typeof data !== 'object'){
+					return reject(e.target.response)
+				}
 				resolve(data)
 			};
 			req.onerror = function(e){

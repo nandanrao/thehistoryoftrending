@@ -6,14 +6,55 @@ define(['nyt/nyt.api', 'utils/bus', 'kefir', 'lodash', 'es6-promise'], function(
 		nyt.mostPopular().then(function(obj){
 		  var num = obj.num_results;
 		  var promises = [];
+		  var queries = {};
 		  for (var i=0; i < num; i += 20){
-		  	promises.push(nyt.mostPopular(i).then(function(obj){
-		  		return stream.emit(obj.results)
-		  	}))
+		  	queries[i] = true
 		  }
-		  Promise.all(promises).then(function(results){
-		  	stream.end()
-		  })
+
+		  getMostPopular(queries)
+		  	.then(function(results){
+			  	stream.end()
+			  })
+			  .catch(function(err){
+			  	throw new Error(err)
+			  })  	
+		  
+		  function getMostPopular(queries){
+		  	return new Promise(function(resolve, reject){
+		  		var arr = _.keys(queries)
+			  	Kefir.sequentially(100, arr)
+		  	  	.flatMapConcat(function(i) {
+		  			  return Kefir.later(110, i)
+		  			})
+		  	  	.onValue(function(i){
+		  	  		makeRequest(i)
+		  		  })
+
+			  	function makeRequest(i){
+			  		nyt.mostPopular(i)
+			  			.then(function(obj){
+			  				stream.emit(obj.results)
+			  				checkItOff(i)
+			  			})
+			  			.catch(function(err){
+			  				if (/developer|timeout/i.test(err)){
+			  					console.log(err)
+				  				_.delay(makeRequest(i), 100)
+				  			}
+				  			else {
+				  				reject(err)
+				  			}
+			  			})
+			  	}
+
+			  	function checkItOff(i){
+			  		delete queries[i]
+			  		if (_.size(queries) === 0){
+			  			resolve()
+			  		}
+			  	}		  
+		  	})
+		  }
 		})
 	}
 
