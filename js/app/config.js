@@ -2,9 +2,8 @@ require.config({
 	baseUrl: 'js/app',
 	shim: {
 		'RainbowVis-JS': {
-	    exports: 'Rainbow'
-		},
-
+			exports: 'Rainbow'
+		}
 	},
 	paths: {
 		backbone: '../lib/bower_components/backbone/backbone',
@@ -20,10 +19,9 @@ require.config({
 		react: '../lib/bower_components/react/react-with-addons',
 		JSXTransformer: '../lib/bower_components/react/JSXTransformer',
 		jsx: '../lib/bower_components/requirejs-react-jsx/jsx',
-		'requirejs-react-jsx': '../lib/bower_components/requirejs-react-jsx/jsx',
 		text: '../lib/bower_components/requirejs-text/text',
 		'RainbowVis-JS': '../lib/bower_components/RainbowVis-JS/rainbowvis',
-		'requirejs-text': '../lib/bower_components/requirejs-text/text'
+		'react-tween-state': '../lib/bower_components/react-tween-state/index-bower'
 	},
 	packages: [
 

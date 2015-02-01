@@ -8,10 +8,10 @@ define(['react', 'lodash'], function(React, _){
 			var articles = this.props.articles;
 
 			return (
+				<ReactCSSTransitionGroup transitionName="articlesUL">
 				<ul className="articles">
 				<ReactCSSTransitionGroup transitionName="articles">
 					{ _.map(articles, function(article, i) {
-						// console.log(article._id)
 	          return <Article
 	          				key={article._id}
 	          				headline={article.headline}
@@ -22,6 +22,7 @@ define(['react', 'lodash'], function(React, _){
 	        }, this)}
 				</ReactCSSTransitionGroup>	
 				</ul>
+				</ReactCSSTransitionGroup>	
 			)
 		}
 	})

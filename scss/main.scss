@@ -64,15 +64,18 @@ ul.subjects {
 }
 
 div#articles {
-	margin-top: 4em;
-	li {
+	ul {
 		width: 70%;
-		margin: inherit auto;	
+		margin: 8em auto 0 auto;		
+	}
+	li {
+		margin-top: 4em;
 		transition: opacity .2s ease-in-out,
 								filter .2s ease-in-out;
 		h2 {
 			font-family: 'Cheltenham Bold';
 			font-size: 2.33em;
+			margin-bottom: 0;
 		}
 		p {
 			font-family: 'Georgia';

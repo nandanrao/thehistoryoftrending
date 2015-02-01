@@ -1,5 +1,5 @@
 div.spinner {
-  width: 15%;
+  width: 8em;
   margin: 10em auto; }
 
 svg.spinner {
@@ -91,16 +91,17 @@ ul.subjects li {
   transition: opacity 0.2s ease-in-out, -webkit-filter 0.2s ease-in-out, opacity 0.2s ease-in-out, filter 0.2s ease-in-out;
   transition: opacity 0.2s ease-in-out, filter 0.2s ease-in-out; }
 
-div#articles {
-  margin-top: 4em; }
-  div#articles li {
-    width: 70%;
-    margin: inherit auto;
-    transition: opacity 0.2s ease-in-out, -webkit-filter 0.2s ease-in-out, opacity 0.2s ease-in-out, filter 0.2s ease-in-out;
-    transition: opacity 0.2s ease-in-out, filter 0.2s ease-in-out; }
-    div#articles li h2 {
-      font-family: 'Cheltenham Bold';
-      font-size: 2.33em; }
-    div#articles li p {
-      font-family: 'Georgia'; }
+div#articles ul {
+  width: 70%;
+  margin: 8em auto 0 auto; }
+div#articles li {
+  margin-top: 4em;
+  transition: opacity 0.2s ease-in-out, -webkit-filter 0.2s ease-in-out, opacity 0.2s ease-in-out, filter 0.2s ease-in-out;
+  transition: opacity 0.2s ease-in-out, filter 0.2s ease-in-out; }
+  div#articles li h2 {
+    font-family: 'Cheltenham Bold';
+    font-size: 2.33em;
+    margin-bottom: 0; }
+  div#articles li p {
+    font-family: 'Georgia'; }
 /*# sourceMappingURL=main.css.map */

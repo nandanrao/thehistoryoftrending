@@ -1,0 +1,38 @@
+{
+  "name": "react-tween-state",
+  "main": "index-bower.js",
+  "version": "0.0.4",
+  "homepage": "https://github.com/chenglou/react-tween-state",
+  "authors": [
+    "Cheng Lou <chenglou92@gmail.com>"
+  ],
+  "description": "React animation.",
+  "keywords": [
+    "react",
+    "animation",
+    "tween",
+    "transition",
+    "state",
+    "interactive",
+    "mixin",
+    "interpolation"
+  ],
+  "license": "BSD",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "_release": "0.0.4",
+  "_resolution": {
+    "type": "version",
+    "tag": "v0.0.4",
+    "commit": "97a4e81e6642d0f12b222b3efcf95524fa7988f8"
+  },
+  "_source": "git://github.com/chenglou/react-tween-state.git",
+  "_target": "~0.0.4",
+  "_originalSource": "react-tween-state",
+  "_direct": true
+}
